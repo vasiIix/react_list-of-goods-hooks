@@ -1,5 +1,1 @@
-{
-  "extends": "@mate-academy/students-ts-config",
-  "compilerOptions": { "ignoreDeprecations": "6.0" },
-  "include": ["src"]
-}
+{ "extends": "@mate-academy/students-ts-config", "include": ["src"] }
