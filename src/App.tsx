@@ -15,7 +15,7 @@ export const goodsFromServer = [
   'Garlic',
 ];
 
-enum SortBy {
+enum SortType {
   Alphabetically = 'alphabetically',
   Length = 'length',
   None = '',
@@ -27,7 +27,7 @@ enum SortDirection {
 }
 
 export const App: React.FC = () => {
-  const [sortedBy, setSortedBy] = useState<SortBy>(SortBy.None);
+  const [sortedBy, setSortedBy] = useState<SortType>(SortType.None);
 
   const [sortDirection, setSortDirection] = useState<SortDirection>(
     SortDirection.Ascending,
@@ -35,11 +35,11 @@ export const App: React.FC = () => {
 
   const goods = [...goodsFromServer];
 
-  if (sortedBy === SortBy.Alphabetically) {
+  if (sortedBy === SortType.Alphabetically) {
     goods.sort();
   }
 
-  if (sortedBy === SortBy.Length) {
+  if (sortedBy === SortType.Length) {
     goods.sort((a, b) => a.length - b.length);
   }
 
@@ -52,9 +52,9 @@ export const App: React.FC = () => {
       <div className="buttons">
         <button
           type="button"
-          className={`button is-info ${sortedBy !== SortBy.Alphabetically ? 'is-light' : ''}`}
+          className={`button is-info ${sortedBy !== SortType.Alphabetically ? 'is-light' : ''}`}
           onClick={() => {
-            setSortedBy(SortBy.Alphabetically);
+            setSortedBy(SortType.Alphabetically);
           }}
         >
           Sort alphabetically
@@ -62,9 +62,9 @@ export const App: React.FC = () => {
 
         <button
           type="button"
-          className={`button is-success ${sortedBy !== SortBy.Length ? 'is-light' : ''}`}
+          className={`button is-success ${sortedBy !== SortType.Length ? 'is-light' : ''}`}
           onClick={() => {
-            setSortedBy(SortBy.Length);
+            setSortedBy(SortType.Length);
           }}
         >
           Sort by length
@@ -83,13 +83,13 @@ export const App: React.FC = () => {
         >
           Reverse
         </button>
-        {(sortedBy !== SortBy.None ||
+        {(sortedBy !== SortType.None ||
           sortDirection === SortDirection.Descending) && (
           <button
             type="button"
             className="button is-danger is-light"
             onClick={() => {
-              setSortedBy(SortBy.None);
+              setSortedBy(SortType.None);
               setSortDirection(SortDirection.Ascending);
             }}
           >
